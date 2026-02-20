@@ -1,5 +1,10 @@
 # OTPM Yadi. Browser Extension
+<div align="center">
+  
+![OTPM Yadi](https://img.shields.io/badge/OTP-Manager-blue?style=for-the-badge&logo=google-authenticator)
+![Version](https://img.shields.io/badge/Version-1.0-red?style=for-the-badge)
 
+</div>
 ## Update v1.0:
 Memperbaiki kode untuk menghindari window browser minimize setelah edit dan tambah akun manual
 
@@ -68,6 +73,7 @@ Selalu simpan master password Anda di password manager yang aman atau tulis di t
 * Jika ekstensi dihapus atau data browser ter-reset, data OTP akan hilang kecuali sudah diekspor manual.
 * Penulis ekstensi tidak bertanggung jawab atas kerugian, kebocoran data, atau penyalahgunaan yang timbul dari penggunaan ekstensi ini.
 * Dengan menggunakan ekstensi ini, pengguna menyatakan menanggung segala risiko sendiri.
+
 
 
 
