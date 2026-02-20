@@ -1,0 +1,459 @@
+body {
+  width: 420px;
+  min-width: 300px;
+  max-width: 800px;
+  height: 600px;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+  color: #333;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  background: #4a90e2;
+  color: #fff;
+}
+
+.header-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.header-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.header-icon {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.header-icon:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.header-links {
+  padding: 6px 10px;
+  font-size: 13px;
+  background: #fafafa;
+  border-bottom: 1px solid #ccc;
+}
+
+.header-links a {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.header-links a:hover {
+  text-decoration: underline;
+}
+
+#loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: #4a90e2;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: none;
+  text-align: center;
+  border: 1px solid #4a90e2;
+}
+
+.search-container {
+  padding: 8px;
+  background: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.search-container input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.no-results {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+  font-style: italic;
+}
+
+#tabs {
+  display: flex;
+  flex-wrap: wrap;
+  background: #eaeaea;
+  border-bottom: 1px solid #ccc;
+}
+
+#tabs .tab {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 14px;
+  background: #eaeaea;
+  border-right: 1px solid #ccc;
+  transition: background 0.2s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#tabs .tab:last-child {
+  border-right: none;
+}
+
+#tabs .tab:hover {
+  background: #ddd;
+}
+
+#tabs .tab.active {
+  background: #fff;
+  font-weight: bold;
+  border-bottom: 2px solid #4a90e2;
+}
+
+#list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  min-width: 0;
+}
+
+.account .info {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.account .label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account .issuer {
+  font-size: 12px;
+  color: #777;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account .code {
+  flex: 1;
+  font-size: 18px;
+  font-weight: bold;
+  color: #4a90e2;
+  cursor: pointer;
+  text-align: right;
+  user-select: none;
+  margin: 0 0 0 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.account .time {
+  width: 30px;
+  text-align: right;
+  font-size: 12px;
+  color: #777;
+  flex-shrink: 0;
+}
+
+.account button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px;
+  margin-left: 4px;
+  color: #666;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.account button:hover {
+  color: #e74c3c;
+}
+
+.account button.edit:hover {
+  color: #4a90e2;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: Arial, sans-serif;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  width: 300px;
+  max-width: 90%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #555;
+}
+
+.modal-content .close:hover {
+  color: #000;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.modal-content label {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.modal-content input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-left: 5px;
+}
+
+.modal-content select {
+  padding: 3px 5px;
+  font-size: 13px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fefefe;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #4a90e2;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.modal-content button:hover {
+  background-color: #357ab8;
+}
+
+#toolsModal .modal-content {
+  width: 320px;
+}
+
+/* Overlay menutupi seluruh popup */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Isi modal */
+.modal-overlay .modal-content {
+  background: #fff;
+  color: #222;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  width: 90%;
+  max-width: 340px;
+  box-sizing: border-box;
+}
+
+/* Teks dan input */
+.modal-overlay .modal-content p {
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.modal-overlay input[type="text"],
+.modal-overlay input[type="password"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+/* Tombol sejajar kiri–kanan */
+.modal-overlay .button-row {
+  display: flex;
+  justify-content: space-between; /* kiri dan kanan */
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Style tombol */
+.modal-overlay button {
+  flex: 1;
+  padding: 7px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.modal-overlay #cancelBtn {
+  background-color: #e0e0e0;
+  color: #222;
+  margin-right: 8px;
+}
+
+.modal-overlay #cancelBtn:hover {
+  background-color: #ccc;
+}
+
+.toolbar-modal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.toolbar-section {
+  margin-bottom: 15px;
+}
+
+.toolbar-section h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #666;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.toolbar-modal button {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #4a90e2;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  color: #4a90e2;
+}
+
+.toolbar-modal button:hover {
+  background: #4a90e2;
+  color: #fff;
+  border-color: #4a90e2;
+}
+
+.toolbar-modal button#modalClearBtn {
+  background: #fff5f5;
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.toolbar-modal button#modalClearBtn:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
+/* Modal styling untuk import password */
+#importPasswordModal .modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  max-width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#importPasswordModal h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+#importPasswordModal p {
+  margin: 0 0 15px 0;
+  color: #666;
+  font-size: 14px;
+}
